@@ -61,7 +61,7 @@ def train_model(output_dir):
 def inference(test_dataset,output_dir):
     for idx in range(len(test_dataset)):
         print(test_dataset[idx])
-        generated_commentary = utils.tokenizer.decode(test_dataset[idx].pixel_values)
+        generated_commentary = utils.tokenizer.decode(test_dataset[idx]['pixel_values'])
         with open(f"{output_dir}/test.txt",'a') as f:
             f.write(generated_commentary+"\n")
 
