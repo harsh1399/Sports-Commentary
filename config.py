@@ -2,7 +2,7 @@
 class config :
     ENCODER = "google/vivit-b-16x2-kinetics400"
     DECODER = "gpt2"
-    TRAIN_BATCH_SIZE = 4
+    TRAIN_BATCH_SIZE = 2
     VAL_BATCH_SIZE = 2
     VAL_EPOCHS = 1
     LR = 5e-5

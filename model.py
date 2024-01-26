@@ -19,7 +19,7 @@ model.config.max_length = 128
 model.config.early_stopping = True
 model.config.no_repeat_ngram_size = 3
 model.config.length_penalty = 2.0
-model.config.num_beams = 4
+model.config.num_beams = 2  #4
 
 def train_model(output_dir):
     training_args = Seq2SeqTrainingArguments(
