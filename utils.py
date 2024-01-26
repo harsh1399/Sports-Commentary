@@ -35,7 +35,7 @@ def read_video_pyav(container, indices):
     container.seek(0)
     start_index = indices[0]
     end_index = indices[-1]
-    print(len(indices))
+    # print(len(indices))
     for i, frame in enumerate(container.decode(video=0)):
         if i > end_index:
             break
@@ -89,7 +89,7 @@ class ImgDataset(Dataset):
         return len(self.df)
 
     def __getitem__(self, idx):
-        print(self.df.video.iloc[idx])
+        # print(self.df.video.iloc[idx])
         caption = self.df.text.iloc[idx]
         video_path = self.df.video.iloc[idx]
         # img_path = os.path.join(self.root_dir , image)
@@ -105,7 +105,7 @@ class ImgDataset(Dataset):
         captions = self.tokenizer(caption,
                                   padding='max_length', truncation=True).input_ids
         captions = [caption if caption != self.tokenizer.pad_token_id else -100 for caption in captions]
-        print(inputs.size(), len(captions))
+        # print(inputs.size(), len(captions))
         encoding = {"pixel_values": inputs.squeeze(), "labels": torch.tensor(captions)}
         return encoding
 

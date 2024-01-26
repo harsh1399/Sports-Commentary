@@ -59,6 +59,7 @@ def train_model(output_dir):
 
 def inference(test_dataloader,output_dir):
     for pixel_values,label in tqdm(test_dataloader):
+        print(pixel_values,label)
         generated_commentary = utils.tokenizer.decode(model.generate(pixel_values))
         with open(f"{output_dir}/test.txt",'a') as f:
             f.write(generated_commentary+"\n")
