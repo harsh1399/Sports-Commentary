@@ -26,6 +26,8 @@ def train_model(output_dir):
         output_dir=f"{output_dir}/VIT_large_gpt2",
         predict_with_generate=True,
         evaluation_strategy="epoch",
+        per_device_train_batch_size=2,
+        per_device_eval_batch_size=2,
         do_train=True,
         do_eval=True,
         logging_steps=1024,
