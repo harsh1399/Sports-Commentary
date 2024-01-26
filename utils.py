@@ -6,6 +6,7 @@ from transformers import VivitImageProcessor, VivitModel
 from transformers import AutoTokenizer, GPT2Config, default_data_collator
 from config import config
 import datasets
+import torch
 
 np.random.seed(13)
 rouge = datasets.load_metric("rouge")
