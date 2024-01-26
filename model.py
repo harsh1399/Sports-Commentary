@@ -5,7 +5,7 @@ from transformers import VisionEncoderDecoderModel
 from transformers import default_data_collator
 import utils
 import argparse
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, TensorDataset
 from tqdm import tqdm
 
 model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(config.ENCODER,config.DECODER)
@@ -54,13 +54,14 @@ def train_model(output_dir):
     )
     trainer.train()
     trainer.save_model(f'{output_dir}/VIT_large_gpt2')
-    test_dataloader = DataLoader(test_dataset,batch_size=2,shuffle=True)
-    inference(test_dataloader,output_dir)
+    # dataset = TensorDataset()
+    # test_dataloader = DataLoader(,batch_size=2,shuffle=True)
+    inference(test_dataset,output_dir)
 
-def inference(test_dataloader,output_dir):
-    for pixel_values,label in tqdm(test_dataloader):
-        print(pixel_values,label)
-        generated_commentary = utils.tokenizer.decode(model.generate(pixel_values))
+def inference(test_dataset,output_dir):
+    for idx in range(len(test_dataset)):
+        print(test_dataset[idx])
+        generated_commentary = utils.tokenizer.decode(test_dataset[idx].pixel_values)
         with open(f"{output_dir}/test.txt",'a') as f:
             f.write(generated_commentary+"\n")
 
