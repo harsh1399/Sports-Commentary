@@ -56,4 +56,15 @@ if __name__ == "__main__":
     parser.add_argument('--output_dir', type=str, help='Directory where model checkpoints will be saved')
     args = parser.parse_args()
     output_dir = args.output_dir
+    if torch.cuda.is_available():
+
+        device = torch.device("cuda")
+
+        print('There are %d GPU(s) available.' % torch.cuda.device_count())
+
+        print('We will use the GPU:', torch.cuda.get_device_name(0))
+
+    else:
+        print('No GPU available, using the CPU instead.')
+        device = torch.device("cpu")
     train_model(output_dir)
