@@ -55,3 +55,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     output_dir = args.output_dir
     trainer.train()
+    trainer.save_model(f'{output_dir}/VIT_large_gpt2')
