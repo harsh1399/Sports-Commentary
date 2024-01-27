@@ -34,7 +34,7 @@ model.config.max_length = 128
 model.config.early_stopping = True
 model.config.no_repeat_ngram_size = 3
 model.config.length_penalty = 2.0
-model.config.num_beams = 2  #4
+model.config.num_beams = 4
 
 def train_model(output_dir):
     training_args = Seq2SeqTrainingArguments(
@@ -48,7 +48,7 @@ def train_model(output_dir):
         logging_steps=1024,
         save_steps=2048,
         warmup_steps=1024,
-        learning_rate = 5e-5,
+        learning_rate = 5e-3,
         #max_steps=1500, # delete for full training
         num_train_epochs = config.EPOCHS, #TRAIN_EPOCHS
         overwrite_output_dir=True,
@@ -75,8 +75,8 @@ def inference(test_dataset,output_dir):
     for idx in range(len(test_dataset)):
         data = test_dataset[idx]['pixel_values'][None,:,:,:,:].to(device)
         generated_text = model.generate(data)
-        print(generated_text.shape)
-        generated_commentary = utils.tokenizer.decode(generated_text)
+        # print(generated_text.shape)
+        generated_commentary = utils.tokenizer.decode(generated_text[0])
         with open(f"{output_dir}/testnew.txt",'a') as f:
             f.write(generated_commentary+"\n")
 
