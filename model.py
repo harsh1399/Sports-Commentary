@@ -8,6 +8,19 @@ import argparse
 from torch.utils.data import DataLoader, TensorDataset
 from tqdm import tqdm
 
+device = None
+if torch.cuda.is_available():
+
+    device = torch.device("cuda")
+
+    # print('There are %d GPU(s) available.' % torch.cuda.device_count())
+    #
+    # print('We will use the GPU:', torch.cuda.get_device_name(0))
+
+else:
+    # print('No GPU available, using the CPU instead.')
+    device = torch.device("cpu")
+
 model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(config.ENCODER,config.DECODER)
 
 model.config.decoder_start_token_id = utils.tokenizer.cls_token_id
@@ -60,7 +73,7 @@ def train_model(output_dir):
 
 def inference(test_dataset,output_dir):
     for idx in range(len(test_dataset)):
-        data = test_dataset[idx]['pixel_values'][None,:,:,:,:]
+        data = test_dataset[idx]['pixel_values'][None,:,:,:,:].to(device)
         print(data.shape)
         generated_commentary = utils.tokenizer.decode(model.generate(data)[0])
         with open(f"{output_dir}/test.txt",'a') as f:
@@ -72,15 +85,4 @@ if __name__ == "__main__":
     parser.add_argument('--output_dir', type=str, help='Directory where model checkpoints will be saved')
     args = parser.parse_args()
     output_dir = args.output_dir
-    if torch.cuda.is_available():
-
-        device = torch.device("cuda")
-
-        print('There are %d GPU(s) available.' % torch.cuda.device_count())
-
-        print('We will use the GPU:', torch.cuda.get_device_name(0))
-
-    else:
-        print('No GPU available, using the CPU instead.')
-        device = torch.device("cpu")
     train_model(output_dir)
