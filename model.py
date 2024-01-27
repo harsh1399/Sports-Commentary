@@ -74,8 +74,9 @@ def train_model(output_dir):
 def inference(test_dataset,output_dir):
     for idx in range(len(test_dataset)):
         data = test_dataset[idx]['pixel_values'][None,:,:,:,:].to(device)
-        print(data.shape)
-        generated_commentary = utils.tokenizer.decode(model.generate(data)[0])
+        generated_text = model.generate(data)
+        print(generated_text.shape)
+        generated_commentary = utils.tokenizer.decode(generated_text[0])
         with open(f"{output_dir}/test.txt",'a') as f:
             f.write(generated_commentary+"\n")
 
