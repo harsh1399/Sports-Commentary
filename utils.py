@@ -92,8 +92,8 @@ class ImgDataset(Dataset):
 
     def __getitem__(self, idx):
         # print(self.df.video.iloc[idx])
-        caption = self.df.text.iloc[idx]
-        video_path = self.df.video.iloc[idx]
+        caption = self.df.commentary.iloc[idx]
+        video_path = self.df.file.iloc[idx]
         # img_path = os.path.join(self.root_dir , image)
         # img = Image.open(img_path).convert("RGB")
         container = av.open(video_path)
