@@ -76,8 +76,8 @@ def inference(test_dataset,output_dir):
         data = test_dataset[idx]['pixel_values'][None,:,:,:,:].to(device)
         generated_text = model.generate(data)
         print(generated_text.shape)
-        generated_commentary = utils.tokenizer.decode(generated_text[0])
-        with open(f"{output_dir}/test.txt",'a') as f:
+        generated_commentary = utils.tokenizer.decode(generated_text)
+        with open(f"{output_dir}/testnew.txt",'a') as f:
             f.write(generated_commentary+"\n")
 
 
