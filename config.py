@@ -4,7 +4,7 @@ class config :
     # DECODER = "gpt2"
     DECODER = "mistralai/Mistral-7B-v0.1"
     TRAIN_BATCH_SIZE = 2
-    VAL_BATCH_SIZE = 2
+    VAL_BATCH_SIZE = 1
     VAL_EPOCHS = 1
     LR = 5e-5
     SEED = 42

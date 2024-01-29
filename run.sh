@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=soc-gpu-np
 #SBATCH --partition=soc-gpu-np
-#SBATCH --nodes=1
+#SBATCH --nodes=2
 #SBATCH --time=8:00:00
 #SBATCH --mem=50GB
 #SBATCH --gres=gpu:1
