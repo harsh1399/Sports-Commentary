@@ -23,7 +23,7 @@ model.config.vocab_size = model.config.decoder.vocab_size
 # set beam search parameters
 model.config.eos_token_id = utils.tokenizer.sep_token_id
 model.config.decoder_start_token_id = utils.tokenizer.bos_token_id
-model.config.max_length = 128
+model.config.max_length = config.MAX_LEN
 model.config.early_stopping = True
 model.config.no_repeat_ngram_size = 3
 model.config.length_penalty = 2.0
