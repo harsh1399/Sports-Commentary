@@ -117,14 +117,14 @@ def combine_video_and_commentary(df,video_files):
     for file in video_files:
         file_name = file.split('.')[0]
         ball_number = int(file_name[4:])
-        innings_data = df[df['currentInning.id'] == 85915]
-        ball_data = innings_data[innings_data['currentInning.balls'] == ball_number]
+        # innings_data = df[df['currentInning.id'] == 85915]
+        ball_data = df[df['currentInning.balls'] == ball_number]
         new_df['commentary'].append(ball_data.iloc[0]['text'])
         new_df['file'].append(f'Data/videos/{file}')
     return pd.DataFrame(new_df)
 
 def get_dataset():
-    df = pd.read_csv('Data/commentary.csv')
+    df = pd.read_csv('Data/final_commentary.csv')
     video_files = os.listdir("Data/videos")
     new_df = combine_video_and_commentary(df,video_files)
     # df['video'] = df[df['currentInning.id'] == 85915]['currentInning.balls'].iloc[:16].apply(train_video_links)
@@ -137,8 +137,8 @@ def get_dataset():
     # val_df = df[df['currentInning.id'] == 85915][['text', 'video']].iloc[22:26]
     # tokenizer = get_tokenizer()
     # image_processor = get_image_processor()
-    train_df,test_df = train_test_split(new_df,test_size=0.1,)
-    train_df,val_df = train_test_split(train_df,test_size=0.1)
+    train_df,test_df = train_test_split(new_df,test_size=0.04)
+    train_df,val_df = train_test_split(train_df,test_size=0.03)
     train_dataset = ImgDataset(train_df, tokenizer, image_processor)
     val_dataset = ImgDataset(val_df, tokenizer, image_processor)
     test_dataset = ImgDataset(test_df, tokenizer, image_processor)

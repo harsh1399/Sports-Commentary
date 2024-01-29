@@ -10,15 +10,8 @@ from tqdm import tqdm
 
 device = None
 if torch.cuda.is_available():
-
     device = torch.device("cuda")
-
-    # print('There are %d GPU(s) available.' % torch.cuda.device_count())
-    #
-    # print('We will use the GPU:', torch.cuda.get_device_name(0))
-
 else:
-    # print('No GPU available, using the CPU instead.')
     device = torch.device("cpu")
 
 model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(config.ENCODER,config.DECODER)
@@ -41,8 +34,8 @@ def train_model(output_dir):
         output_dir=f"{output_dir}/VIT_large_gpt2",
         predict_with_generate=True,
         evaluation_strategy="epoch",
-        per_device_train_batch_size=2,
-        per_device_eval_batch_size=2,
+        per_device_train_batch_size=config.TRAIN_BATCH_SIZE,
+        per_device_eval_batch_size=config.VAL_BATCH_SIZE,
         do_train=True,
         do_eval=True,
         logging_steps=1024,
