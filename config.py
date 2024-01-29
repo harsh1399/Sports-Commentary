@@ -1,7 +1,8 @@
 
 class config :
     ENCODER = "google/vivit-b-16x2-kinetics400"
-    DECODER = "gpt2"
+    # DECODER = "gpt2"
+    DECODER = "mistralai/Mixtral-8x7B-Instruct-v0.1"
     TRAIN_BATCH_SIZE = 2
     VAL_BATCH_SIZE = 2
     VAL_EPOCHS = 1
