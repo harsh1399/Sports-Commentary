@@ -10,7 +10,7 @@ import torch
 from sklearn.model_selection import train_test_split
 import os
 
-np.random.seed(13)
+np.random.seed(5)
 rouge = datasets.load_metric("rouge")
 tokenizer = AutoTokenizer.from_pretrained(config.DECODER)
 tokenizer.pad_token = tokenizer.unk_token
@@ -124,7 +124,7 @@ def combine_video_and_commentary(df,video_files):
     return pd.DataFrame(new_df)
 
 def get_dataset():
-    df = pd.read_csv('Data/final_commentary.csv')
+    df = pd.read_csv('Data/updated_commentary.csv')
     video_files = os.listdir("Data/videos")
     new_df = combine_video_and_commentary(df,video_files)
     # df['video'] = df[df['currentInning.id'] == 85915]['currentInning.balls'].iloc[:16].apply(train_video_links)
@@ -137,7 +137,7 @@ def get_dataset():
     # val_df = df[df['currentInning.id'] == 85915][['text', 'video']].iloc[22:26]
     # tokenizer = get_tokenizer()
     # image_processor = get_image_processor()
-    train_df,test_df = train_test_split(new_df,test_size=0.1)
+    train_df,test_df = train_test_split(new_df,test_size=0.15)
     train_df,val_df = train_test_split(train_df,test_size=0.1)
     train_dataset = ImgDataset(train_df, tokenizer, image_processor)
     val_dataset = ImgDataset(val_df, tokenizer, image_processor)
