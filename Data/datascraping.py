@@ -16,8 +16,8 @@ periods = ["1","2"]
 events = None
 # with open("BBL/logs.txt",'r') as f:
 #     events = f.readlines()
-leagueId="381449&"
-eventId="433606"
+leagueId="1298134"
+eventId="1298150"
 
 # dat_url = pd.read_csv("./BBL Matches 2011-2019.csv")
 # balls = pd.read_csv("./BBL Ball-by-Ball 2011-2019.csv")
@@ -88,7 +88,7 @@ for period in periods:
     # match_frame = match_frame.reset_index(drop=True)
     # concated_matchframe = pd.concat([match_frame,dataframe],axis=1)
     updated_data = pd.concat([updated_data,dataframe],axis=0)
-updated_data.to_csv(f"commentary.csv")
+updated_data.to_csv(f"t20_commentary.csv")
 
 
 #balling_lengths = ["Full Toss","Yorker","Full Length","full","fuller","Good Length","length","short","good length"]
