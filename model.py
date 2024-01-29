@@ -28,6 +28,7 @@ model.config.early_stopping = True
 model.config.no_repeat_ngram_size = 3
 model.config.length_penalty = 2.0
 model.config.num_beams = 4
+model.config.output_hidden_states = False
 
 def train_model(output_dir):
     training_args = Seq2SeqTrainingArguments(
