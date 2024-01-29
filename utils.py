@@ -107,7 +107,7 @@ class ImgDataset(Dataset):
         captions = self.tokenizer(caption,
                                   padding='max_length', truncation=True).input_ids
         captions = [caption if caption != self.tokenizer.pad_token_id else -100 for caption in captions]
-        # print(inputs.size(), len(captions))
+        print(inputs.size(), len(captions))
         encoding = {"pixel_values": inputs.squeeze(), "labels": torch.tensor(captions)}
         return encoding
 
