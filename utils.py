@@ -91,7 +91,7 @@ class ImgDataset(Dataset):
         return len(self.df)
 
     def __getitem__(self, idx):
-        # print(self.df.video.iloc[idx])
+        print(self.df.file.iloc[idx])
         caption = self.df.commentary.iloc[idx]
         video_path = self.df.file.iloc[idx]
         # img_path = os.path.join(self.root_dir , image)
@@ -137,8 +137,8 @@ def get_dataset():
     # val_df = df[df['currentInning.id'] == 85915][['text', 'video']].iloc[22:26]
     # tokenizer = get_tokenizer()
     # image_processor = get_image_processor()
-    train_df,test_df = train_test_split(new_df,test_size=0.04)
-    train_df,val_df = train_test_split(train_df,test_size=0.03)
+    train_df,test_df = train_test_split(new_df,test_size=0.1)
+    train_df,val_df = train_test_split(train_df,test_size=0.1)
     train_dataset = ImgDataset(train_df, tokenizer, image_processor)
     val_dataset = ImgDataset(val_df, tokenizer, image_processor)
     test_dataset = ImgDataset(test_df, tokenizer, image_processor)
