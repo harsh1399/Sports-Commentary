@@ -15,11 +15,12 @@ else:
     device = torch.device("cpu")
 
 vivit_config = VivitConfig()
-vivit_config.output_hidden_states = False
+vivit_config.output_hidden_states = True
 vivit_config.return_dict = False
+vivit_config.output_attentions = True
 # mistral_config = MistralConfig()
 roberta_config = AutoConfig.from_pretrained(config.DECODER)
-roberta_config.is_decoder = True
+# roberta_config.is_decoder = True
 encoder_decoder_config = VisionEncoderDecoderConfig.from_encoder_decoder_configs(vivit_config,roberta_config)
 
 model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(config.ENCODER,config.DECODER, config = encoder_decoder_config)
