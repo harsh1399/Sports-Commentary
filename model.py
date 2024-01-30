@@ -1,7 +1,7 @@
 import torch
 from config import config
 from transformers import Seq2SeqTrainer, Seq2SeqTrainingArguments
-from transformers import VisionEncoderDecoderModel
+from transformers import VisionEncoderDecoderModel,MistralConfig, VivitConfig
 from transformers import default_data_collator
 import utils
 import argparse
@@ -14,6 +14,7 @@ if torch.cuda.is_available():
 else:
     device = torch.device("cpu")
 
+vivit_config = VivitConfig()
 model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(config.ENCODER,config.DECODER)
 
 model.config.decoder_start_token_id = utils.tokenizer.cls_token_id
