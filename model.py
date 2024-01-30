@@ -48,13 +48,13 @@ def train_model(output_dir):
         evaluation_strategy="epoch",
         per_device_train_batch_size=config.TRAIN_BATCH_SIZE,
         per_device_eval_batch_size=config.VAL_BATCH_SIZE,
-        gradient_accumulation_steps = 3,
+        gradient_accumulation_steps = 1,
         do_train=True,
         do_eval=True,
         logging_steps=1024,
         save_steps=2048,
         warmup_steps=1024,
-        learning_rate = 5e-3,
+        learning_rate = 5e-4,
         #max_steps=1500, # delete for full training
         num_train_epochs = config.EPOCHS, #TRAIN_EPOCHS
         overwrite_output_dir=True,
