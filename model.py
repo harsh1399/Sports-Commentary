@@ -1,7 +1,7 @@
 import torch
 from config import config
 from transformers import Seq2SeqTrainer, Seq2SeqTrainingArguments
-from transformers import VisionEncoderDecoderModel,VivitConfig, VisionEncoderDecoderConfig,AutoConfig
+from transformers import VisionEncoderDecoderModel,VivitConfig, VisionEncoderDecoderConfig,AutoConfig , T5Config
 from transformers import default_data_collator
 import utils
 import argparse
@@ -19,9 +19,10 @@ vivit_config.output_hidden_states = True
 vivit_config.return_dict = False
 vivit_config.output_attentions = True
 # mistral_config = MistralConfig()
-roberta_config = AutoConfig.from_pretrained(config.DECODER)
+# roberta_config = AutoConfig.from_pretrained(config.DECODER)
 # roberta_config.is_decoder = True
-encoder_decoder_config = VisionEncoderDecoderConfig.from_encoder_decoder_configs(vivit_config,roberta_config)
+flan_t5_config = T5Config()
+encoder_decoder_config = VisionEncoderDecoderConfig.from_encoder_decoder_configs(vivit_config,flan_t5_config)
 
 model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(config.ENCODER,config.DECODER, config = encoder_decoder_config)
 
