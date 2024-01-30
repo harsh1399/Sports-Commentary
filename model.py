@@ -48,7 +48,7 @@ def train_model(output_dir):
         evaluation_strategy="epoch",
         per_device_train_batch_size=config.TRAIN_BATCH_SIZE,
         per_device_eval_batch_size=config.VAL_BATCH_SIZE,
-        gradient_accumulation_steps = 1,
+        gradient_accumulation_steps = 4,
         do_train=True,
         do_eval=True,
         logging_steps=1024,
