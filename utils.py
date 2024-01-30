@@ -104,7 +104,7 @@ class ImgDataset(Dataset):
         #     img= self.transform(img)
         # pixel_values = self.feature_extractor(img, return_tensors="pt").pixel_values
         inputs = self.image_processor(list(video), return_tensors="pt").pixel_values
-        captions = self.tokenizer(caption,padding='max_length',max_length = 50, truncation=True).input_ids
+        captions = self.tokenizer(caption,padding='max_length',max_length = self.max_length, truncation=True).input_ids
         captions = [caption if caption != self.tokenizer.pad_token_id else -100 for caption in captions]
         print(inputs.size(), len(captions))
         encoding = {"pixel_values": inputs.squeeze(), "labels": torch.tensor(captions)}

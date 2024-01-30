@@ -6,7 +6,7 @@ class config :
     TRAIN_BATCH_SIZE = 1
     VAL_BATCH_SIZE = 1
     VAL_EPOCHS = 1
-    LR = 5e-5
+    LR = 5e-4
     SEED = 42
     MAX_LEN = 70
     SUMMARY_LEN = 20
