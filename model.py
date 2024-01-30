@@ -1,7 +1,7 @@
 import torch
 from config import config
 from transformers import Seq2SeqTrainer, Seq2SeqTrainingArguments
-from transformers import VisionEncoderDecoderModel,MistralConfig, VivitConfig, VisionEncoderDecoderConfig
+from transformers import VisionEncoderDecoderModel,VivitConfig, VisionEncoderDecoderConfig,AutoConfig
 from transformers import default_data_collator
 import utils
 import argparse
@@ -17,8 +17,10 @@ else:
 vivit_config = VivitConfig()
 vivit_config.output_hidden_states = False
 vivit_config.return_dict = False
-mistral_config = MistralConfig()
-encoder_decoder_config = VisionEncoderDecoderConfig.from_encoder_decoder_configs(vivit_config,mistral_config)
+# mistral_config = MistralConfig()
+roberta_config = AutoConfig.from_pretrained(config.DECODER)
+roberta_config.is_decoder = True
+encoder_decoder_config = VisionEncoderDecoderConfig.from_encoder_decoder_configs(vivit_config,roberta_config)
 
 model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(config.ENCODER,config.DECODER, config = encoder_decoder_config)
 
@@ -78,7 +80,7 @@ def inference(test_dataset,output_dir):
         generated_text = model.generate(data)
         # print(generated_text.shape)
         generated_commentary = utils.tokenizer.decode(generated_text[0])
-        with open(f"{output_dir}/generated_commentary_1.txt",'a') as f:
+        with open(f"{output_dir}/commentary_1.txt",'a') as f:
             f.write(generated_commentary+"\n")
 
 
