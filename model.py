@@ -1,7 +1,7 @@
 import torch
 from config import config
 from transformers import Seq2SeqTrainer, Seq2SeqTrainingArguments
-from transformers import VisionEncoderDecoderModel,MistralConfig, VivitConfig
+from transformers import VisionEncoderDecoderModel,MistralConfig, VivitConfig, VisionEncoderDecoderConfig
 from transformers import default_data_collator
 import utils
 import argparse
@@ -15,7 +15,12 @@ else:
     device = torch.device("cpu")
 
 vivit_config = VivitConfig()
-model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(config.ENCODER,config.DECODER)
+vivit_config.output_hidden_states = False
+vivit_config.return_dict = False
+mistral_config = MistralConfig()
+encoder_decoder_config = VisionEncoderDecoderConfig.from_encoder_decoder_configs(vivit_config,mistral_config)
+
+model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(config.ENCODER,config.DECODER, config = encoder_decoder_config)
 
 model.config.decoder_start_token_id = utils.tokenizer.cls_token_id
 model.config.pad_token_id = utils.tokenizer.pad_token_id
