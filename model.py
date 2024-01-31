@@ -55,13 +55,13 @@ def train_model(output_dir):
         logging_steps=1024,
         save_steps=2048,
         warmup_steps=1024,
-        learning_rate = 5e-4,
+        learning_rate = config.LR,
         #max_steps=1500, # delete for full training
         num_train_epochs = config.EPOCHS, #TRAIN_EPOCHS
         overwrite_output_dir=True,
         save_total_limit=1,
     )
-    train_dataset,val_dataset,test_dataset = utils.get_dataset()
+    train_dataset,val_dataset,test_dataset = utils.get_dataset(output_dir)
 
     trainer = Seq2SeqTrainer(
         tokenizer=utils.image_processor,
@@ -84,7 +84,7 @@ def inference(test_dataset,output_dir):
         generated_text = model.generate(data)
         # print(generated_text.shape)
         generated_commentary = utils.tokenizer.decode(generated_text[0])
-        with open(f"{output_dir}/commentary_1.txt",'a') as f:
+        with open(f"{output_dir}/commentary_final.txt",'a') as f:
             f.write(generated_commentary+"\n")
 
 

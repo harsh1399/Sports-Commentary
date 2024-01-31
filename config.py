@@ -8,7 +8,7 @@ class config :
     VAL_EPOCHS = 1
     LR = 5e-4
     SEED = 42
-    MAX_LEN = 70
+    MAX_LEN = 50
     SUMMARY_LEN = 20
     WEIGHT_DECAY = 0.01
     MEAN = (0.485, 0.456, 0.406)

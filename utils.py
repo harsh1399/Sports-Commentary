@@ -10,7 +10,7 @@ import torch
 from sklearn.model_selection import train_test_split
 import os
 
-np.random.seed(5)
+np.random.seed(25)
 rouge = datasets.load_metric("rouge")
 tokenizer = AutoTokenizer.from_pretrained(config.DECODER)
 tokenizer.pad_token = tokenizer.unk_token
@@ -81,17 +81,20 @@ def val_video_links(ball_number):
 
 
 class ImgDataset(Dataset):
-    def __init__(self, df, tokenizer, image_processor):
+    def __init__(self, df, tokenizer, image_processor,trainortest,outputdir):
         self.df = df
         self.tokenizer = tokenizer
         self.image_processor = image_processor
-        self.max_length = 70
-
+        self.max_length = config.MAX_LEN
+        self.data_use = trainortest
+        self.output_dir = outputdir
     def __len__(self, ):
         return len(self.df)
 
     def __getitem__(self, idx):
-        print(self.df.file.iloc[idx])
+        if self.data_use == "test":
+            with open(f"{self.output_dir}/commentary_final.txt", 'a') as f:
+                f.write(self.df.file.iloc[idx]+ "\n")
         caption = self.df.commentary.iloc[idx]
         video_path = self.df.file.iloc[idx]
         # img_path = os.path.join(self.root_dir , image)
@@ -106,7 +109,7 @@ class ImgDataset(Dataset):
         inputs = self.image_processor(list(video), return_tensors="pt").pixel_values
         captions = self.tokenizer(caption,padding='max_length',max_length = self.max_length, truncation=True).input_ids
         captions = [caption if caption != self.tokenizer.pad_token_id else -100 for caption in captions]
-        print(inputs.size(), len(captions))
+        # print(inputs.size(), len(captions))
         encoding = {"pixel_values": inputs.squeeze(), "labels": torch.tensor(captions)}
         return encoding
 
@@ -122,25 +125,16 @@ def combine_video_and_commentary(df,video_files):
         new_df['file'].append(f'Data/videos/{file}')
     return pd.DataFrame(new_df)
 
-def get_dataset():
+def get_dataset(output_dir):
     df = pd.read_csv('Data/updated_commentary.csv')
     video_files = os.listdir("Data/videos")
     new_df = combine_video_and_commentary(df,video_files)
-    # df['video'] = df[df['currentInning.id'] == 85915]['currentInning.balls'].iloc[:16].apply(train_video_links)
-    # train_df = df[df['currentInning.id'] == 85915][['text', 'video']].iloc[:16]
-    #
-    # df['video'] = df[df['currentInning.id'] == 85915]['currentInning.balls'].iloc[16:22].apply(test_video_links)
-    # test_df = df[df['currentInning.id'] == 85915][['text', 'video']].iloc[16:22]
-    #
-    # df['video'] = df[df['currentInning.id'] == 85915]['currentInning.balls'].iloc[22:26].apply(val_video_links)
-    # val_df = df[df['currentInning.id'] == 85915][['text', 'video']].iloc[22:26]
-    # tokenizer = get_tokenizer()
-    # image_processor = get_image_processor()
+
     train_df,test_df = train_test_split(new_df,test_size=0.2)
-    train_df,val_df = train_test_split(train_df,test_size=0.1)
-    train_dataset = ImgDataset(train_df, tokenizer, image_processor)
-    val_dataset = ImgDataset(val_df, tokenizer, image_processor)
-    test_dataset = ImgDataset(test_df, tokenizer, image_processor)
+    train_df,val_df = train_test_split(train_df,test_size=0.15)
+    train_dataset = ImgDataset(train_df, tokenizer, image_processor,"train",output_dir)
+    val_dataset = ImgDataset(val_df, tokenizer, image_processor,"val",output_dir)
+    test_dataset = ImgDataset(test_df, tokenizer, image_processor,"test",output_dir)
     return train_dataset,val_dataset,test_dataset
 
 
