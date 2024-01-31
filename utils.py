@@ -136,7 +136,7 @@ def get_dataset():
     # val_df = df[df['currentInning.id'] == 85915][['text', 'video']].iloc[22:26]
     # tokenizer = get_tokenizer()
     # image_processor = get_image_processor()
-    train_df,test_df = train_test_split(new_df,test_size=0.15)
+    train_df,test_df = train_test_split(new_df,test_size=0.2)
     train_df,val_df = train_test_split(train_df,test_size=0.1)
     train_dataset = ImgDataset(train_df, tokenizer, image_processor)
     val_dataset = ImgDataset(val_df, tokenizer, image_processor)

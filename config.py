@@ -1,8 +1,8 @@
 
 class config :
     ENCODER = "google/vivit-b-16x2-kinetics400"
-    # DECODER = "gpt2"
-    DECODER = "FacebookAI/xlm-roberta-large"
+    DECODER = "gpt2"
+    # DECODER = "FacebookAI/xlm-roberta-large"
     TRAIN_BATCH_SIZE = 1
     VAL_BATCH_SIZE = 1
     VAL_EPOCHS = 1
