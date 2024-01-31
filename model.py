@@ -1,7 +1,7 @@
 import torch
 from config import config
 from transformers import Seq2SeqTrainer, Seq2SeqTrainingArguments
-from transformers import VisionEncoderDecoderModel,VivitConfig, VisionEncoderDecoderConfig, RobertaConfig,GPT2Config
+from transformers import VisionEncoderDecoderModel,VivitConfig, VisionEncoderDecoderConfig, AutoConfig,GPT2Config
 from transformers import default_data_collator
 import utils
 import argparse
@@ -19,12 +19,12 @@ vivit_config.output_hidden_states = True
 vivit_config.return_dict = False
 vivit_config.output_attentions = True
 # mistral_config = MistralConfig()
-# roberta_config = AutoConfig.from_pretrained(config.DECODER)
-# roberta_config.is_decoder = True
+roberta_config = AutoConfig.from_pretrained(config.DECODER)
+roberta_config.is_decoder = True
 # roberta_config = RobertaConfig.from_pretrained(config.DECODER)
 # roberta_config.is_decoder = True
 gpt2_config = GPT2Config()
-encoder_decoder_config = VisionEncoderDecoderConfig.from_encoder_decoder_configs(vivit_config,gpt2_config)
+encoder_decoder_config = VisionEncoderDecoderConfig.from_encoder_decoder_configs(vivit_config,roberta_config)
 
 model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(config.ENCODER,config.DECODER, config = encoder_decoder_config)
 
@@ -56,7 +56,6 @@ def train_model(output_dir):
         save_steps=2048,
         warmup_steps=1024,
         learning_rate = config.LR,
-        #max_steps=1500, # delete for full training
         num_train_epochs = config.EPOCHS, #TRAIN_EPOCHS
         overwrite_output_dir=True,
         save_total_limit=1,
@@ -82,10 +81,12 @@ def inference(test_dataset,output_dir):
     for idx in range(len(test_dataset)):
         data = test_dataset[idx]['pixel_values'][None,:,:,:,:].to(device)
         generated_text = model.generate(data)
-        # print(generated_text.shape)
+        prediction = {'predictions':generated_text[0],'label_ids':test_dataset[idx]['labels'].to(device)}
+        rouge_score = utils.compute_metrics(prediction)
         generated_commentary = utils.tokenizer.decode(generated_text[0])
         with open(f"{output_dir}/commentary_final.txt",'a') as f:
             f.write(generated_commentary+"\n")
+            f.write(rouge_score+"\n")
 
 
 if __name__ == "__main__":

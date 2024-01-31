@@ -10,7 +10,7 @@ import torch
 from sklearn.model_selection import train_test_split
 import os
 
-np.random.seed(25)
+np.random.seed(60)
 rouge = datasets.load_metric("rouge")
 tokenizer = AutoTokenizer.from_pretrained(config.DECODER)
 tokenizer.pad_token = tokenizer.unk_token
