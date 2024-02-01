@@ -79,11 +79,11 @@ def inference(test_dataset,output_dir):
     for idx in range(len(test_dataset)):
         data = test_dataset[idx]['pixel_values'][None,:,:,:,:].to(device)
         generated_text = model.generate(data)
-        prediction = {'predictions': generated_text[0], 'label_ids': test_dataset[idx]['labels'].to(device)}
+        prediction = (generated_text[0], test_dataset[idx]['labels'].to(device))
         # print(prediction)
-        rouge_score = utils.compute_metrics(prediction)
+        rouge_score = utils.compute_metrics(prediction,inference=True)
         generated_commentary = utils.tokenizer.decode(generated_text[0])
-        with open(f"{output_dir}/commentary_final_roberta.txt",'a') as f:
+        with open(f"{output_dir}/commentary_final_roberta-XLM.txt",'a') as f:
             f.write(generated_commentary+"\n")
             f.write(rouge_score+"\n")
 

@@ -138,11 +138,14 @@ def get_dataset(output_dir):
     return train_dataset,val_dataset,test_dataset
 
 
-def compute_metrics(pred):
-    print(type(pred))
-    labels_ids = pred.label_ids
-    pred_ids = pred.predictions
-    # all unnecessary tokens are removed
+def compute_metrics(pred,inference=False):
+    labels_ids = None
+    pred_ids = None
+    if inference:
+        pred_ids, labels_ids = pred
+    else:
+        labels_ids = pred.label_ids
+        pred_ids = pred.predictions
     pred_str = tokenizer.batch_decode(pred_ids, skip_special_tokens=True)
     labels_ids[labels_ids == -100] = tokenizer.pad_token_id
     label_str = tokenizer.batch_decode(labels_ids, skip_special_tokens=True)
