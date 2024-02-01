@@ -16,13 +16,10 @@ vivit_config = VivitConfig()
 vivit_config.output_hidden_states = True
 vivit_config.return_dict = False
 vivit_config.output_attentions = True
-# mistral_config = MistralConfig()
-roberta_config = AutoConfig.from_pretrained(config.DECODER)
-roberta_config.is_decoder = True
-# roberta_config = RobertaConfig.from_pretrained(config.DECODER)
+# roberta_config = AutoConfig.from_pretrained(config.DECODER)
 # roberta_config.is_decoder = True
 gpt2_config = GPT2Config()
-encoder_decoder_config = VisionEncoderDecoderConfig.from_encoder_decoder_configs(vivit_config,roberta_config)
+encoder_decoder_config = VisionEncoderDecoderConfig.from_encoder_decoder_configs(vivit_config,gpt2_config)
 
 model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(config.ENCODER,config.DECODER, config = encoder_decoder_config)
 
@@ -47,7 +44,7 @@ def train_model(output_dir):
         evaluation_strategy="epoch",
         per_device_train_batch_size=config.TRAIN_BATCH_SIZE,
         per_device_eval_batch_size=config.VAL_BATCH_SIZE,
-        gradient_accumulation_steps = 4,
+        # gradient_accumulation_steps = 4,
         do_train=True,
         do_eval=True,
         logging_steps=1024,
@@ -85,7 +82,7 @@ def inference(test_dataset,output_dir):
         generated_commentary = utils.tokenizer.decode(generated_text[0])
         with open(f"{output_dir}/commentary_final_roberta-XLM.txt",'a') as f:
             f.write(generated_commentary+"\n")
-            f.write(rouge_score+"\n")
+            f.write(f"rouge2 precision: {rouge_score['rouge2_precision']} rouge2_recall: {rouge_score['rouge2_recall']} rouge2_fmeasure: {rouge_score['rouge2_fmeasure']}\n")
 
 
 if __name__ == "__main__":
