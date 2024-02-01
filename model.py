@@ -73,17 +73,21 @@ def train_model(output_dir):
     inference(test_dataset,output_dir)
 
 def inference(test_dataset,output_dir):
-    for idx in range(len(test_dataset)):
+    total_rouge_score = 0
+    no_of_test_samples = len(test_dataset)
+    for idx in range(no_of_test_samples):
         data = test_dataset[idx]['pixel_values'][None,:,:,:,:].to(device)
-        generated_text = model.generate(data)
+        generated_text = model.generate(data,max_new_token=50,do_sample=True,top_k = 0)
         prediction = (generated_text[0], test_dataset[idx]['labels'].to(device))
         # print(prediction)
         rouge_score = utils.compute_metrics(prediction,inference=True)
         generated_commentary = utils.tokenizer.decode(generated_text[0])
-        with open(f"{output_dir}/commentary_final_roberta-XLM.txt",'a') as f:
+        total_rouge_score += rouge_score['rouge2_fmeasure']
+        with open(f"{output_dir}/commentary_final_gpt2.txt",'a') as f:
             f.write(generated_commentary+"\n")
             f.write(f"rouge2 precision: {rouge_score['rouge2_precision']} rouge2_recall: {rouge_score['rouge2_recall']} rouge2_fmeasure: {rouge_score['rouge2_fmeasure']}\n")
-
+    with open(f"{output_dir}/commentary_final_roberta-XLM.txt", 'a') as f:
+        f.write(f"average rouge:{total_rouge_score/no_of_test_samples}\n")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

@@ -14,7 +14,7 @@ class config :
     MEAN = (0.485, 0.456, 0.406)
     STD = (0.229, 0.224, 0.225)
     TRAIN_PCT = 0.95
-    EPOCHS = 10
+    EPOCHS = 5
     IMG_SIZE = (224,224)
     LABEL_MASK = -100
     TOP_K = 1000
