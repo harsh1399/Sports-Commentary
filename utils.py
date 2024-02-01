@@ -97,15 +97,10 @@ class ImgDataset(Dataset):
                 f.write(self.df.file.iloc[idx]+ "\n")
         caption = self.df.commentary.iloc[idx]
         video_path = self.df.file.iloc[idx]
-        # img_path = os.path.join(self.root_dir , image)
-        # img = Image.open(img_path).convert("RGB")
         container = av.open(video_path)
         indices = sample_frame_indices(clip_len=32, frame_sample_rate=4, seg_len=container.streams.video[0].frames)
         video = read_video_pyav(container=container, indices=indices)
 
-        # if self.transform is not None:
-        #     img= self.transform(img)
-        # pixel_values = self.feature_extractor(img, return_tensors="pt").pixel_values
         inputs = self.image_processor(list(video), return_tensors="pt").pixel_values
         captions = self.tokenizer(caption,padding='max_length',max_length = self.max_length, truncation=True).input_ids
         captions = [caption if caption != self.tokenizer.pad_token_id else -100 for caption in captions]

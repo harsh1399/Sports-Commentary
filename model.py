@@ -25,9 +25,7 @@ model = VisionEncoderDecoderModel.from_encoder_decoder_pretrained(config.ENCODER
 
 model.config.decoder_start_token_id = utils.tokenizer.cls_token_id
 model.config.pad_token_id = utils.tokenizer.pad_token_id
-# make sure vocab size is set correctly
 model.config.vocab_size = model.config.decoder.vocab_size
-# set beam search parameters
 model.config.eos_token_id = utils.tokenizer.sep_token_id
 model.config.decoder_start_token_id = utils.tokenizer.bos_token_id
 model.config.max_length = config.MAX_LEN
@@ -68,8 +66,6 @@ def train_model(output_dir):
     )
     trainer.train()
     trainer.save_model(f'{output_dir}/VIT_large_gpt2')
-    # dataset = TensorDataset()
-    # test_dataloader = DataLoader(,batch_size=2,shuffle=True)
     inference(test_dataset,output_dir)
 
 def inference(test_dataset,output_dir):
@@ -79,7 +75,6 @@ def inference(test_dataset,output_dir):
         data = test_dataset[idx]['pixel_values'][None,:,:,:,:].to(device)
         generated_text = model.generate(data,max_new_tokens=config.MAX_LEN,do_sample=True,top_k = 0)
         prediction = (generated_text[0][1:], test_dataset[idx]['labels'].to(device))
-        # print(prediction)
         rouge_score = utils.compute_metrics(prediction,inference=True)
         generated_commentary = utils.tokenizer.decode(generated_text[0][1:])
         total_rouge_score += rouge_score['rouge2_fmeasure']
