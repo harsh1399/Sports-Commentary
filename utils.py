@@ -139,8 +139,9 @@ def get_dataset(output_dir):
 
 
 def compute_metrics(pred):
-    labels_ids = pred['label_ids']
-    pred_ids = pred['predictions']
+    print(type(pred))
+    labels_ids = pred.label_ids
+    pred_ids = pred.predictions
     # all unnecessary tokens are removed
     pred_str = tokenizer.batch_decode(pred_ids, skip_special_tokens=True)
     labels_ids[labels_ids == -100] = tokenizer.pad_token_id
