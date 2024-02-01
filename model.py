@@ -77,7 +77,7 @@ def inference(test_dataset,output_dir):
     no_of_test_samples = len(test_dataset)
     for idx in range(no_of_test_samples):
         data = test_dataset[idx]['pixel_values'][None,:,:,:,:].to(device)
-        generated_text = model.generate(data,max_new_token=50,do_sample=True,top_k = 0)
+        generated_text = model.generate(data,max_new_tokens=50,do_sample=True,top_k = 0)
         prediction = (generated_text[0], test_dataset[idx]['labels'].to(device))
         # print(prediction)
         rouge_score = utils.compute_metrics(prediction,inference=True)
