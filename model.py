@@ -86,7 +86,7 @@ def inference(test_dataset,output_dir):
         with open(f"{output_dir}/commentary_final_gpt2.txt",'a') as f:
             f.write(generated_commentary+"\n")
             f.write(f"rouge2 precision: {rouge_score['rouge2_precision']} rouge2_recall: {rouge_score['rouge2_recall']} rouge2_fmeasure: {rouge_score['rouge2_fmeasure']}\n")
-    with open(f"{output_dir}/commentary_final_roberta-XLM.txt", 'a') as f:
+    with open(f"{output_dir}/commentary_final_gpt2.txt", 'a') as f:
         f.write(f"average rouge:{total_rouge_score/no_of_test_samples}\n")
 
 if __name__ == "__main__":
