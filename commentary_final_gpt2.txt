@@ -1,0 +1,71 @@
+banged in on a length ball,  flicks it away to wide right point for a single.  looks to force a single but finds himself in a jam again, this time in front of goal.  just missed the mark.  finds a gap between himself and the crease and saves
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+another one short of a length outside off,  can't quite make it past the covers.  picks it up and guides it into the covers for a single.  pinches it square leg, who just smiles as he looks to hustle it away to the off side.  looks to flick
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+kicked away in a straight line.  takes a chance and it pays off.  looks like he's done a good job, but this time, it's just a touch shorter of a length ball. Stays on the pads and opens the face for a single.  can't quite get
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+banged on the pads,  hustles down the leg side and guides to midwicket for a single.  looks to flick the ball across the off side, but it is wide of off stump. He can't get it past point, and the fielder is on his back foot. 
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+wide open field. Arshdeep Kane looks to turn the ball into the off side, and  picks it up straight to midwicket for a single. He looks to flick it away to India's left, but  can't quite get it past the pads. India go back for another,
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+tossed away on the pads,  was back to square leg with just a hint of length on a good length ball.  was struck on the thigh pad by  and was taken down the leg side awkwardly.  can't quite make the throw, but he can't really afford to be
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+nip from a length outside off,  can't get bat on it as he waits for it to come off.  drops it for a single, but  couldn't get it past the pads.  was looking for a quick single but found it just short of off stump. Short of a
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+slightly shorter of a length outside off,  gets into a good dive and defends with a length ball.  ducks under it for a single, but  can't square it off the pads. Inside edge off again,  is back on the pads and can't lay bat on it. 
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+bounced across midwicket for a single.  picks up the leg side and guides to the off side as  dabs into the covers. Midwicket is wide and wide, and  can't get a single off stump.  thinks to himself, 'This is going to be a
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+banged on the pads,  looks to drive to midwicket for a single.  drives into the off side, but can't get there.  gets a good flick on the pad, and it's off stump time, and  can't quite get a single across.  goes for
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+on a good length,  can't get past the line. Short of a length again,  takes a single off the pads and calmly guides into the covers for a single.  flicks away to midwicket but  is still wide of off stump.  looks to flick away, but
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+fuller, fuller and straighter. Steered into the pads,  flicks to midwicket for a single.  ducks under the covers and takes a single from the off side.  is back on track, and  can't quite make it past the covers.  gets a good
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+and  takes a step back. Steered into the off side,  looks to check the gap between the covers, but it's too wide for him. He looks to flick it back of point for a single. He knows this is going to be a big one for him, and takes a
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+hmm,  can't really square the crease as  lets it go.  opens the face and guides it down the leg side.  looks to flick it off the pads, but can't get it past midwicket.  adjusts to square leg for a single, but  couldn
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+outswinger on the pads,  picks it up and defends it well. Short of a length outside off,  can't get a single step on it. He's done it again this time, this time without the ball. He takes a good, deep dive into the back of the covers
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+nips away to midwicket,  flicks down the leg side for a single.  looks to flick but can't get it past his pads. He turns it around and flicks it backward of point for a boundary-swinger. Short of a length,  can't quite get
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+oh, and again, again, this time with a hint of length.  is back on the pads again, and this time for a couple more offswings.  gets some room on the pad for a single, and  gets a couple of nips to square leg for another. 
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+banged on the thigh pad,  flicks the pads away to the right and  looks to flick but can't get it past the pads. He can't really afford to lose control of this one.  defends it well and defends well, but  just couldn't get the ball past the
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+top shot from  at mid-on, and  is on the back foot again. Short of a length on the pads,  looks to flick the pads away from midwicket but misses it.  can't get the ball past his pads, so he just lets it bounce to midw
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+banged away on a length outside off,  flicks to midwicket for a single. Arshdeep looks to flick into the off side, and  just can't get it past him.  looks to steer away from point-blank range, but he can't quite get there.
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+short of a length again,  cuts into the off side, this time to square leg for a single.  opens the face and smiles.  looks to flick the flick, but it's wide of midwicket, and  knows this was a good chance to score a single for India.
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+gives the ball to  for a single,  stays on the pads and pushes it away from point-blank range.  gets the middle off and looks to flick it away, but misses.'s length and length again, but this time it's wide of midwicket,  can
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+nicely played,  gets on the pads and guides to midwicket for a single.  can't get a single on leg stump, but it's a single for India, who can't afford another one.  gets the ball back to him, and they have to get back to square
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+banged on a length ball,  looks to swat the ball away from the pads.  ducks under the pads and pushes the pads into the pads, but it's too late.  pokes the pads down the leg side and nips it into the covers for a single.  couldn't
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+hmm, not quite the length of a length again, but still wide enough for  to make a run.  can't get past the off side, and  gets past the point for a single.  hustles down the leg side, looking for the flick, but can't find it
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+the ball is moving.  is looking to get some bounce, but  can't get it past midwicket.  looks to get a couple more, but he can't quite get past the boundary line, so he drops the ball.  drops the bouncer and looks to force a single
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+that's a good start for him.  opens the face and looks to flick, but  can't get it past midwicket.  ducks under the covers and pokes it away for a single. Superb delivery, superb timing, and a hint of pace from the bowler. He
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+banged on the pads,  is back at square leg.  turns away from square leg for a single, but  can't get it past square leg as he looks to flick it away. He just can't find the gap between square leg and square leg, and it looks like he's
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+outswinger on the pads,  picks it up for a single. Short of a length again,  pushes it down the leg side and guides it to midwicket.  drops it just short of off stump, but  was quick enough to pull it away from the pads.'s
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+nicely played but not there for the drive.  picks it up for good measure.  goes for a single but it bounces off the pads and lands in front of the line.  looks to flick it away, but it lands in the back of the end zone.  turns the wrists and
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+on a length ball,  pokes it away to midwicket for a single.  takes a couple more, but this time he takes it well outside off,  can't quite get it past the covers. He looks to score, but it's short of off stump.  flicks
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+back of a length outside off,  picks it up off the pads, and takes a step towards the off side.  can't quite get it past his pads, but this time, he just can't get it to his pads.  hustles to his left, and opens the face for
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+nip, nip and nip again.  drops a couple more nips, and  can't quite get it past midwicket.  is looking for a single, and without a hint of hustle, he just can't find it.  knows he can't afford another single
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+hmm, good length and wide outside off,  looks to steer towards the off side as  opens the face for a single. Short of a length ball, wide of off stump and wide of midwicket,  can't quite find the crease. He's beaten by the pads,
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+tossed away to  for a single,  picks it off the pads and guides it to midwicket for an incredible single.  turns it into a single for a couple more runs, but it's too late.  flicks it away to short leg for another one, this time
+rouge2 precision: 0.0 rouge2_recall: 0.0 rouge2_fmeasure: 0.0
+average rouge:0.0
