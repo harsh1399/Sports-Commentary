@@ -78,10 +78,10 @@ def inference(test_dataset,output_dir):
     for idx in range(no_of_test_samples):
         data = test_dataset[idx]['pixel_values'][None,:,:,:,:].to(device)
         generated_text = model.generate(data,max_new_tokens=config.MAX_LEN,do_sample=True,top_k = 0)
-        prediction = (generated_text[0], test_dataset[idx]['labels'].to(device))
+        prediction = (generated_text[0][1:], test_dataset[idx]['labels'].to(device))
         # print(prediction)
         rouge_score = utils.compute_metrics(prediction,inference=True)
-        generated_commentary = utils.tokenizer.decode(generated_text[0])
+        generated_commentary = utils.tokenizer.decode(generated_text[0][1:])
         total_rouge_score += rouge_score['rouge2_fmeasure']
         with open(f"{output_dir}/commentary_final_gpt2.txt",'a') as f:
             f.write(generated_commentary+"\n")
