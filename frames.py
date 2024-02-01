@@ -2,7 +2,7 @@
 
 import ffmpeg
 import sys
-import datetime
+
 
 sys.path.append(r'C:\\ffmpeg-2024-01-04-git-33698ef891-full_build\\bin')
 with open('Data/t20.txt','r') as f:

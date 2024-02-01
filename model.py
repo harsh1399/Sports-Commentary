@@ -5,8 +5,6 @@ from transformers import VisionEncoderDecoderModel,VivitConfig, VisionEncoderDec
 from transformers import default_data_collator
 import utils
 import argparse
-from torch.utils.data import DataLoader, TensorDataset
-from tqdm import tqdm
 
 device = None
 if torch.cuda.is_available():
@@ -81,10 +79,11 @@ def inference(test_dataset,output_dir):
     for idx in range(len(test_dataset)):
         data = test_dataset[idx]['pixel_values'][None,:,:,:,:].to(device)
         generated_text = model.generate(data)
-        prediction = {'predictions':generated_text[0],'label_ids':test_dataset[idx]['labels'].to(device)}
+        prediction = {'predictions': generated_text[0], 'label_ids': test_dataset[idx]['labels'].to(device)}
+        # print(prediction)
         rouge_score = utils.compute_metrics(prediction)
         generated_commentary = utils.tokenizer.decode(generated_text[0])
-        with open(f"{output_dir}/commentary_final.txt",'a') as f:
+        with open(f"{output_dir}/commentary_final_roberta.txt",'a') as f:
             f.write(generated_commentary+"\n")
             f.write(rouge_score+"\n")
 

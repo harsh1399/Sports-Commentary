@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
 import av
-from torch.utils.data import Dataset, DataLoader, random_split
-from transformers import VivitImageProcessor, VivitModel
-from transformers import AutoTokenizer, GPT2Config, default_data_collator
+from torch.utils.data import Dataset
+from transformers import VivitImageProcessor
+from transformers import AutoTokenizer
 from config import config
 import datasets
 import torch
@@ -139,9 +139,8 @@ def get_dataset(output_dir):
 
 
 def compute_metrics(pred):
-    labels_ids = pred.label_ids
-    pred_ids = pred.predictions
-
+    labels_ids = pred['label_ids']
+    pred_ids = pred['predictions']
     # all unnecessary tokens are removed
     pred_str = tokenizer.batch_decode(pred_ids, skip_special_tokens=True)
     labels_ids[labels_ids == -100] = tokenizer.pad_token_id
